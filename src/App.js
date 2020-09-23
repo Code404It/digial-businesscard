@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import BusinessCard from './BusinessCard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = ()=> {
+ const [results, setResults] = useState([]);
+  
+  useEffect(() =>{
+  fetch("https://randomuser.me/api/?results=10")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setResults(data.results)
+    });
+  }, [])
+  
+  return(
+    <div>
+      {results.map((result, index)=>{
+        return(
+        <BusinessCard key={index}
+          faceURL= {result.picture.medium} 
+          name= {result.name.first}
+          email= {result.email}
+          phone= {result.phone}/>
+        )
+      
+       })}
+  </div>
+ );
+};
 
 export default App;
