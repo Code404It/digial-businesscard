@@ -1,3 +1,13 @@
+What's going on in the project? Let me tell you very quickly. 
+The state is holding the results. The results are sent to an empty array (useState[])
+useEffect hook is called when the component FIRST loads
+It does an API call and gets back users.
+Then it converts the results to JSON
+That data is now setResults
+Results are set to state and re-renders
+The map function iterates over the results and pulls the different objects as props
+and that creats a digital business card! 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
